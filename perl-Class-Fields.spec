@@ -1,23 +1,22 @@
 %define upstream_name    Class-Fields
 %define upstream_version 0.204
 
-Name:       perl-%{upstream_name}
-Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 2
+Name:		perl-%{upstream_name}
+Version:	%perl_convert_version %{upstream_version}
+Release:	3
 
-Summary:    Inspect the fields of a class
-License:    GPL+ or Artistic
-Group:      Development/Perl
-Url:        http://search.cpan.org/dist/%{upstream_name}
-Source0:    http://www.cpan.org/modules/by-module/Class/%{upstream_name}-%{upstream_version}.tar.gz
+Summary:	Inspect the fields of a class
+License:	GPL+ or Artistic
+Group:		Development/Perl
+Url:		http://search.cpan.org/dist/%{upstream_name}
+Source0:	http://www.cpan.org/modules/by-module/Class/%{upstream_name}-%{upstream_version}.tar.gz
 
-BuildRequires: perl(Carp)
-BuildRequires: perl(Carp::Assert)
-BuildRequires: perl(Test::More)
-BuildRequires: perl(base)
-BuildRequires: perl(constant)
-BuildArch: noarch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
+BuildRequires:	perl-devel
+BuildRequires:	perl(Carp)
+BuildRequires:	perl(Carp::Assert)
+BuildRequires:	perl(Test::More)
+BuildRequires:	perl(base)
+BuildArch:	noarch
 
 %description
 * _Public member._
@@ -34,24 +33,33 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 %setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
-
-%{make}
+perl Makefile.PL INSTALLDIRS=vendor
+%make
 
 %check
-%{make} test
+%make test
 
 %install
-rm -rf %buildroot
 %makeinstall_std
 
-%clean
-rm -rf %buildroot
-
 %files
-%defattr(-,root,root)
 %doc Changes
 %{_mandir}/man3/*
-%perl_vendorlib/*
+%{perl_vendorlib}/*
+
+%changelog
+* Sun Apr 17 2011 Funda Wang <fwang@mandriva.org> 0.204.0-2mdv2011.0
++ Revision: 654274
+- rebuild for updated spec-helper
+
+* Mon Feb 07 2011 Guillaume Rousse <guillomovitch@mandriva.org> 0.204.0-1
++ Revision: 636578
+- update to new version 0.204
+
+* Fri Jul 24 2009 Jérôme Quelin <jquelin@mandriva.org> 0.203.0-1mdv2011.0
++ Revision: 399311
+- import perl-Class-Fields
 
 
+* Fri Jul 24 2009 cpan2dist 0.203-1mdv
+- initial mdv release, generated with cpan2dist
