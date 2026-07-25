@@ -2,14 +2,14 @@
 %define upstream_version 0.204
 
 Name:		perl-%{upstream_name}
-Version:	%perl_convert_version %{upstream_version}
-Release:	5
+Version:	%{upstream_version}
+Release:	6
 
 Summary:	Inspect the fields of a class
 License:	GPL+ or Artistic
 Group:		Development/Perl
-Url:		https://search.cpan.org/dist/%{upstream_name}
-Source0:	http://www.cpan.org/modules/by-module/Class/%{upstream_name}-%{upstream_version}.tar.gz
+Url:		https://metacpan.org/dist/Class-Fields
+Source0:	https://cpan.metacpan.org/authors/id/M/MS/MSCHWERN/Class-Fields-%{upstream_version}.tar.gz
 
 BuildRequires:	make
 BuildRequires:	perl-devel
